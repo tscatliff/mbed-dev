@@ -76,9 +76,12 @@ void rtc_init(void)
         error("PeriphClkInitStruct RTC failed with LSE\n");
     }
 #else /*  MBED_CONF_TARGET_LSE_AVAILABLE */
+
+/* DON'T RESET BACKUP DOMAIN! WE WANT TO KEEP OUR REGISTERS.
     // Reset Backup domain
     __HAL_RCC_BACKUPRESET_FORCE();
     __HAL_RCC_BACKUPRESET_RELEASE();
+*/
 
     // Enable LSI clock
     RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSI;
